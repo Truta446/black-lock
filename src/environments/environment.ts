@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  appDomain: 'localhost:4200',
+  appDomain: 'http://localhost:4200',
   useEmulators: false,
   firebase: {
     apiKey: 'AIzaSyBNPSJ6tot23_737KyRbnPuJOAcoZ8UIAY',

@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  appDomain: 'localhost:4200',
+  appDomain: 'https://black-lock-52770.web.app/',
   useEmulators: false,
   firebase: {
     apiKey: "AIzaSyBNPSJ6tot23_737KyRbnPuJOAcoZ8UIAY",
