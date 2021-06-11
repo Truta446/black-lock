@@ -1,0 +1,53 @@
+name: Deploy to Firebase Hosting on merge
+'on':
+  push:
+    branches:
+      - main
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.15.4
+
+      - name: Find npm cache location
+        id: npm-cache
+        run: echo "::set-output name=dir::$(npm config get cache)"
+
+      - uses: actions/cache@v2
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install deps
+        working-directory: .
+        run: npm install
+
+      - name: Run tests
+        working-directory: .
+        run: npm run test -- --sourceMap=false --browsers=ChromeHeadless --watch=false
+
+      - name: Update chromdrive
+        working-directory: .
+        run: node node_modules/.bin/webdriver-manager update --versions.chrome=91.0.4472.77
+
+      - name: Run e2e tests
+        working-directory: .
+        run: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
+
+      - name: Build application
+        working-directory: .
+        run: npm run build -- --prod
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_BLACK_LOCK_52770 }}'
+          channelId: live
+          projectId: black-lock-52770
