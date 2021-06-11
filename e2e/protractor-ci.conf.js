@@ -9,8 +9,12 @@ exports.config = {
     './src/**/*.e2e-spec.ts'
   ],
   capabilities: {
-    browserName: 'chrome'
+    browserName: 'chrome',
+    chromeOptions: {
+      args: [ "--headless", "--disable-gpu" ]
+    },
   },
+  chromeDriver: '../node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_91.0.4472.77',
   directConnect: true,
   SELENIUM_PROMISE_MANAGER: false,
   baseUrl: 'http://localhost:4200/',
