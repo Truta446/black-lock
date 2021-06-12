@@ -1,0 +1,27 @@
+@import "../../../theme";
+
+:host {
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  box-sizing: border-box;
+}
+button {
+  width: 100%;
+}
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+p.title {
+  font-family: 'Montserrat';
+  font-size: 48px;
+  margin-top: 45px;
+  margin-bottom: 150px;
+  strong {
+    color: mat-color($md-neru, 500);
+  }
+}

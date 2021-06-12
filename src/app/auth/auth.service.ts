@@ -36,7 +36,7 @@ export class AuthService {
     }
   }
 
-  signOut(redirectTo = '/auth/sign-in'): void {
+  signOut(redirectTo = '/auth/home'): void {
     this.afAuth.signOut()
     .then(() => {
       this.router.navigate([redirectTo]);

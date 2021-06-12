@@ -1,4 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+@import 'theme';
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Montserrat, "Helvetica Neue", sans-serif; }
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.horizontal-scroll {
+  overflow-x: scroll;
+  display: flex;
+  .mat-card {
+    width: 144px;
+    margin-right: 16px;
+  }
+}
+.pt-16 {
+  padding-top: 16px;
+}
+.p-16 {
+  padding: 16px;
+}
+.text-center {
+  text-align: center;
+}
+.light {
+  color: #888B8F;
+}
+.w-100 {
+  width: 100%;
+}
+.mt-16 {
+  margin-top: 16px !important;
+}
