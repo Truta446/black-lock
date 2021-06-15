@@ -1,0 +1,30 @@
+@import '../../../theme';
+
+:host {
+  display: block;
+}
+
+.horizontal-scroll {
+  padding: 10px 0px;
+  mat-card {
+    width: 56px;
+    min-width: 64px;
+    color: mat-color($md-neru, 500);
+    border: 1px solid mat-color($md-neru, 500);
+    overflow: hidden;
+    mat-icon {
+      position: relative;
+    }
+  }
+}
+
+.mat-list-base .mat-list-item::ng-deep {
+  .mat-list-item-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+mat-card.action {
+  background-color: rgba(mat-color($md-neru, 500), 0.12);
+}

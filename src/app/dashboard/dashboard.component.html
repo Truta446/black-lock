@@ -1,1 +1,48 @@
-<p>dashboard works!</p>
+<mat-toolbar color="transparent">
+  <mat-toolbar-row class="icon-right">
+    <div class="name">
+      <small style="font-size: 14px; font-weight: lighter;">Olá,</small><br>
+      <span>{{ name }}</span>
+    </div>
+    <span class="spacer"></span>
+    <button mat-icon-button aria-label="Configurações" routerLink="/settings">
+      <mat-icon>settings</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="Sair" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="toolbar-extend mat-elevation-z5">
+  <div class="text-left" style="display: flex; flex-direction: column; padding: 24px; flex-grow: 1;">
+    <small>Seu saldo atual</small>
+    <p class="text-left big" *ngIf="user">
+      <strong><small>R$</small> {{ (user.balance / 100) | currency: ' ' }}</strong>
+    </p>
+  </div>
+</div>
+
+<app-activities title="Atividades Recentes"></app-activities>
+
+<span class="spacer"></span>
+
+<div class="mat-list-base">
+  <h3 class="mat-subheader">O que você gostaria de fazer?</h3>
+  <div class="horizontal-scroll">
+    <mat-card matRipple routerLink="/" class="action pay-bill">
+      <div class="title"><strong>Check-in</strong></div><br>
+      <small>Faça o check-in do seu veículo aqui.</small>
+    </mat-card>
+
+    <mat-card matRipple routerLink="/geolocation/permission" class="action add-wallet">
+      <div class="title"><strong>Onde tem Black Lock</strong></div><br>
+      <small>Procure no mapa onde possui pontos de acesso.</small>
+    </mat-card>
+
+    <mat-card matRipple routerLink="/wallet/add-balance" class="action topup-phone">
+      <div class="title"><strong>Adquira Créditos</strong></div><br>
+      <small>Faça a recarga do seu saldo por aqui.</small>
+    </mat-card>
+  </div>
+</div>

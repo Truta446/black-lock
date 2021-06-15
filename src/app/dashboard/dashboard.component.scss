@@ -1,0 +1,66 @@
+@import '../../theme';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  height: 100%;
+}
+
+.name {
+  line-height: 1;
+}
+.main {
+  flex-grow: 1;
+}
+.add-balance {
+  position: absolute;
+  right: 16px;
+  bottom: -20px;
+  color:  mat-color($md-neru, 500);
+}
+
+.horizontal-scroll {
+  padding: 10px 16px;
+  mat-card {
+    width: 120px;
+    min-width: 120px;
+    height: 100px;
+    overflow: hidden;
+    mat-icon {
+      opacity: 0.3;
+      font-size: 48px;
+      top: -20px;
+      position: relative;
+    }
+  }
+}
+
+.top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.center {
+  text-align: center;
+}
+
+mat-card.action {
+  line-height: 1;
+  border-radius: 10px;
+  .title {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+  color: rgba(white, 0.9);
+  &.pay-bill {
+    background-color: #FF8600;
+  }
+  &.add-wallet {
+    background-color: #6C7B95;
+  }
+  &.topup-phone {
+    background-color: #0D3F67;
+  }
+}

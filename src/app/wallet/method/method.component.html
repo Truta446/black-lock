@@ -1,0 +1,16 @@
+<mat-toolbar color="transparent" class="icon-both">
+  <button mat-icon-button aria-hidden="false" aria-label="Fechar" routerLink="/wallet/add-balance">
+    <mat-icon>arrow_back_ios_new</mat-icon>
+  </button>
+  <span class="ml-16">Adicionar Saldo</span>
+</mat-toolbar>
+<div class="p-16 main">
+  <div [formGroup]="form">
+    <p><strong>Como</strong> você deseja <strong>adicionar?</strong></p>
+    <app-payment-method [formGroup]="form" [acceptedMethods]="['CREDIT_CARD', 'BANK_SLIP', 'PIX']"></app-payment-method>
+  </div>
+
+  <button class="w-100 mt-16" mat-raised-button color="primary" (click)="addBalance()" [disabled]="form.value.method === ''">
+    {{ form.value.method === 'BANK_SLIP' ? 'GERAR BOLETO' : 'ADICIONAR SALDO' }}
+  </button>
+</div>

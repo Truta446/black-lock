@@ -1,0 +1,44 @@
+@import "../../theme";
+
+.progress {
+  height: 0.5rem;
+  background-color: rgba(0,0,0,0.12);
+}
+
+
+::ng-deep .transparent .mat-dialog-container {
+  background: transparent;
+  box-shadow: none;
+  color: white;
+}
+
+::ng-deep .cdk-overlay-backdrop {
+  background-color: rgba(black, 0.7) !important;
+}
+
+::ng-deep .cdk-overlay-backdrop.success {
+  background-color: rgba(#70C4CD, 0.9) !important;
+}
+
+::ng-deep .cdk-overlay-pane.success .mat-dialog-container {
+    background-color: transparent;
+    box-shadow: none;
+    color: white;
+}
+
+.text-white {
+  color: white;
+}
+
+p {
+  font-weight: bold;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+mat-icon {
+  font-size: 90px;
+  width: 90px;
+}

@@ -11,8 +11,131 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Montserrat, "Helvetica Neue", sans-serif; }
 
+.mat-body, .mat-body-1, .mat-typography, .mat-form-field, .mat-button {
+  font-family: Montserrat;
+}
+
 .spacer {
   flex: 1 1 auto;
+}
+
+button.mat-button-base:not(.mat-fab):not(.mat-mini-fab) {
+  border-radius: 8px;
+  line-height: 40px;
+  text-transform: uppercase;
+}
+
+.phone::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
+  border: none;
+}
+
+.terms {
+  font-size: 12px;
+  .mat-slide-toggle {
+    white-space: normal;
+  }
+  .mat-slide-toggle-content {
+    overflow: visible;
+    text-overflow: initial;
+    white-space: normal;
+  }
+}
+
+.full mat-dialog-container {
+  padding: 0;
+}
+
+.mat-list-base .mat-list-item.no-padding .mat-list-item-content {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.mat-list {
+  .mat-list-item {
+    h1, h2, h3, h4 {
+      color: #373c58;
+    }
+    p {
+      color: #8c919e;
+    }
+  }
+}
+.mat-list-base .mat-list-item {
+  color: #373c58;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: rgba(#8c919e, 0.87);
+}
+.mat-form-field-label {
+  color: rgba(#8c919e, 0.87);
+}
+.mat-raised-button.mat-primary[disabled] {
+  color: rgba(#373c58, 0.3);
+  background-color: rgba(#373c58, 0.12);
+}
+.mat-slide-toggle {
+  color: rgba(#373c58, 0.87);
+}
+.mat-list-base .mat-list-item .mat-line[wrap] {
+  white-space: initial;
+  text-overflow: initial;
+}
+
+mat-toolbar.mat-toolbar[color="transparent"] {
+  background-color: transparent;
+  color: mat-color($md-neru, 900);
+}
+mat-toolbar.mat-toolbar[color="white"] {
+  background-color: white;
+  color: mat-color($md-neru, 900);
+}
+
+mat-toolbar.icon-left, mat-toolbar-row.icon-left {
+  padding-left: 4px;
+}
+mat-toolbar.icon-right, mat-toolbar-row.icon-right {
+  padding-right: 4px;
+}
+mat-toolbar.icon-both, mat-toolbar-row.icon-both {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+mat-bottom-sheet-container.mat-bottom-sheet-container {
+  padding: 0;
+}
+
+a:visited {
+  color: mat-color($md-neruaccent, 900);
+}
+
+.dashboard-tabs .mat-tab-body-wrapper {
+  height: 100%;
+}
+.dashboard-tabs .mat-tab-label:nth-of-type(3) {
+  margin-left: 24px;
+}
+.dashboard-tabs .mat-tab-label:nth-of-type(2) {
+  margin-right: 24px;
+}
+.dashboard-tabs .mat-tab-label {
+  padding: 0 12px;
+  width: 25%;
+}
+.dashboard-tabs .mat-tab-label .mat-tab-label-content {
+  flex-direction: column;
+}
+
+.qr-code-tabs .mat-tab-label {
+  width: 50%;
+}
+
+.qr-code-tabs .mat-tab-body-wrapper {
+  height: 100%;
+}
+.qr-code-tabs .mat-tab-label-content {
+  color: white;
 }
 
 .horizontal-scroll {
@@ -23,21 +146,94 @@ body { margin: 0; font-family: Montserrat, "Helvetica Neue", sans-serif; }
     margin-right: 16px;
   }
 }
+
+.shrink-right {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .pt-16 {
   padding-top: 16px;
 }
+
 .p-16 {
   padding: 16px;
 }
 .text-center {
   text-align: center;
 }
+
 .light {
   color: #888B8F;
 }
+
+p {
+  color: #222;
+  font-size: 16px;
+}
+
 .w-100 {
   width: 100%;
 }
 .mt-16 {
   margin-top: 16px !important;
+}
+
+p {
+  font-family: 'Montserrat';
+  font-size: 18px;
+  font-weight: 400;
+  small {
+    font-size: 12px;
+    font-style: italic;
+  }
+  &.big {
+    font-size: 24px;
+  }
+}
+
+button.mat-button-base:not(.mat-icon-button):not(.mat-fab):not(.mat-mini-fab) {
+  line-height: 50px;
+  border-radius: 4px;
+}
+.mat-raised-button:not([class*=mat-elevation-z]) {
+  box-shadow: none;
+}
+
+.cdk-overlay-pane.full-pane {
+  max-width: 100% !important;
+  .mat-dialog-container {
+    padding: 0;
+  }
+}
+
+.mat-subheader {
+  display: flex;
+  box-sizing: border-box;
+  padding: 16px;
+  align-items: center;
+}
+
+.mr-auto,
+.mx-auto {
+  margin-right: auto !important;
+}
+.lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+.text-gray-800 {
+  color: #5a5c69 !important;
+}
+.mb-5,
+.my-5 {
+  margin-bottom: 3rem !important;
+}
+.text-gray-500 {
+  color: #b7b9cc !important;
+}
+.mb-0,
+.my-0 {
+  margin-bottom: 0 !important;
 }

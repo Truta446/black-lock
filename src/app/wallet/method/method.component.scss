@@ -1,0 +1,28 @@
+@import '../../../theme';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  height: 100%;
+}
+
+.ml-16 {
+  margin-left: 16px;
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
+}
+
+.method mat-select ::ng-deep {
+  .mat-select-value-text, .mat-select-value {
+    color: mat-color($md-neru, 500);
+  }
+  font-weight: bold;
+  font-size: 24px;
+}

@@ -1,11 +1,57 @@
-<form>
-  <mat-form-field color="accent" appearance="standard">
-    <mat-label>Email</mat-label>
-    <input
-      matInput
-      email
-      name="email"
-      type="email"
-    >
-  </mat-form-field>
-</form>
+<mat-toolbar color="transparent" class="icon-left">
+  <button mat-icon-button aria-hidden="false" aria-label="Fechar" routerLink="/cadastro/home">
+    <mat-icon>arrow_back_ios_new</mat-icon>
+  </button>
+  <span class="spacer"></span>
+</mat-toolbar>
+
+<div class="p-16 login">
+  <p>Bem vindo de volta! Para entrar informe seu <strong>email</strong> e <strong>senha</strong>.</p>
+
+  <form>
+    <mat-form-field color="accent" appearance="outline" class="w-100">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        placeholder="Seu email"
+        type="email"
+        #emailModel="ngModel"
+        [(ngModel)]="email"
+        name="email"
+        required
+      >
+      <mat-error *ngIf="emailModel.invalid">Email Inválido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline" class="w-100">
+      <mat-label>Senha</mat-label>
+      <input
+        matInput
+        name="password"
+        [type]="hide ? 'password' : 'text'"
+        required
+        [(ngModel)]="password"
+        placeholder="Sua senha"
+        #passwordModel="ngModel"
+        minlength="6"
+      >
+      <button tabindex="-1" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+      <mat-error *ngIf="passwordModel.invalid">Senha inválida</mat-error>
+    </mat-form-field>
+  </form>
+
+  <button class="w-100" mat-raised-button color="primary" (click)="onSignin()">ENTRAR</button>
+
+  <div class="center">
+    <div class="separator"><span>ou</span></div>
+  </div>
+
+  <div>
+    <button class="w-100 mt-16" mat-stroked-button color="primary" (click)="signInWithGoogle()">
+      <img src="assets/google-icon.svg" width="20px">
+      ENTRAR COM GOOGLE
+    </button>
+  </div>
+</div>

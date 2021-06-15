@@ -1,0 +1,31 @@
+<div [formGroup]="form">
+  <div class="horizontal-scroll" *ngIf="!form.value.method">
+    <mat-card matRipple class="action" (click)="setMethod('CREDIT_CARD')" *ngIf="hasMethod('CREDIT_CARD')">
+      <div class="top">
+        <mat-icon aria-hidden="false" color="transparent">credit_card</mat-icon>
+      </div>
+      <div class="center">CRÉDITO</div>
+    </mat-card>
+
+    <mat-card matRipple class="action" (click)="setMethod('BANK_SLIP')" *ngIf="hasMethod('BANK_SLIP')">
+      <div class="top">
+        <mat-icon aria-hidden="false" color="transparent">receipt_long</mat-icon>
+      </div>
+      <div class="center">BOLETO</div>
+    </mat-card>
+
+    <mat-card matRipple class="action" (click)="setMethod('PIX')" *ngIf="hasMethod('PIX')">
+      <div class="top">
+        <mat-icon aria-hidden="false" color="transparent">account_balance_wallet</mat-icon>
+      </div>
+      <div class="center">PIX</div>
+    </mat-card>
+  </div>
+  <mat-list>
+    <mat-list-item class="icon-both" *ngIf="form.value.method">
+      <mat-icon matListIcon>{{ methodIcon() }}</mat-icon>
+      <p matLine>{{ methodName() }}</p>
+      <mat-icon (click)="setMethod('')">close</mat-icon>
+    </mat-list-item>
+  </mat-list>
+</div>
