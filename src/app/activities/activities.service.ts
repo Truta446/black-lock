@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
-import { map, take } from 'rxjs/operators'
+import { map, take } from 'rxjs/operators';
 
 import { Activity } from '../interfaces/activity';
 

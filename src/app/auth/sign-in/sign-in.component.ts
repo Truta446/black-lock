@@ -29,7 +29,7 @@ export class SignInComponent implements OnInit {
     this.auth.signin(this.email, this.password);
   }
 
-  signInWithGoogle() {
+  signInWithGoogle(): void {
     this.auth.signInWithGoogle();
   }
 }

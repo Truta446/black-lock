@@ -19,7 +19,7 @@ export class AddBalanceComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  transform(event: any) {
+  transform(event: any): void {
     const value = event.target.value.replace('R$ ', '').replace(/\./g, '').replace(/,/g, '');
     if (parseFloat(value) || parseFloat(value) === 0) {
       event.target.value = numeral(parseFloat(`${value.slice(0, -2)}.${value.slice(-2)}`)).format('$ 0,0.00');
@@ -29,7 +29,7 @@ export class AddBalanceComponent implements OnInit {
     this.form.get('amountCents')?.setValue(event.target.value);
   }
 
-  save() {
+  save(): void {
     const value = this.form.value.amountCents.replace('R$ ', '').replace(/\./g, '').replace(/,/g, '');
     localStorage.setItem('addBalance', JSON.stringify({amountCents: value}));
   }

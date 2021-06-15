@@ -13,7 +13,7 @@ export class PermissionComponent {
     private ngZone: NgZone
   ) { }
 
-  allowGeolocation() {
+  allowGeolocation(): void {
     const coords = JSON.parse(localStorage.getItem('geolocation')!);
 
     if (!coords) {

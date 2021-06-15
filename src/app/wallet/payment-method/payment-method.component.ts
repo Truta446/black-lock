@@ -75,11 +75,11 @@ export class PaymentMethodComponent implements OnInit, OnDestroy, ControlValueAc
     this.onTouchedFunction();
   }
 
-  registerOnChange(onChangeFun: Function): void {
+  registerOnChange(onChangeFun: any): void {
     this.onChangeFunction = onChangeFun;
   }
 
-  registerOnTouched(onTouchedFun: Function): void {
+  registerOnTouched(onTouchedFun: any): void {
     this.onTouchedFunction = onTouchedFun;
   }
 

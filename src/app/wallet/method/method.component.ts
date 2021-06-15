@@ -61,7 +61,7 @@ export class MethodComponent implements OnInit, OnDestroy {
         endHour: moment().format('YYYY-MM-DD HH:mm:ss'),
         type: 'ADD',
         vehicleId: ''
-      }
+      };
 
       await this.activitiesService.addActivity(data);
 

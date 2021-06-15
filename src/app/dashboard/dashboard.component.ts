@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.name = this.user.name;
   }
 
-  logout() {
+  logout(): void {
     this.auth.signOut();
   }
 }

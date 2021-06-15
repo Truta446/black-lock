@@ -13,7 +13,7 @@ export class SystemService {
 
   constructor(private dialog: MatDialog) { }
 
-  openLoading(message: string | null = null) {
+  openLoading(message: string | null = null): any {
     this.loadingRef = this.dialog.open(LoadingComponent, {panelClass: 'transparent'});
     this.loadingRef.disableClose = true;
     if (message) {
@@ -22,11 +22,11 @@ export class SystemService {
     return this.loadingRef;
   }
 
-  closeLoading() {
+  closeLoading(): void {
     this.loadingRef.close();
   }
 
-  openSuccess(message: string | null = null) {
+  openSuccess(message: string | null = null): any {
     this.successRef = this.dialog.open(LoadingComponent, {
       panelClass: 'success', backdropClass: 'success'
     });
@@ -38,7 +38,7 @@ export class SystemService {
     return this.successRef;
   }
 
-  openDialog(title: string = '', message: string = 'Alerta') {
+  openDialog(title: string = '', message: string = 'Alerta'): any {
     this.dialogRef = this.dialog.open(AlertComponent, {
       data: {
         title,
@@ -48,7 +48,7 @@ export class SystemService {
     return this.dialogRef;
   }
 
-  closeDialog() {
+  closeDialog(): void {
     this.dialogRef.close();
   }
 }
