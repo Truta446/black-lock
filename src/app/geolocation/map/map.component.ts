@@ -90,7 +90,7 @@ export class MapComponent implements OnInit, OnDestroy {
   getGeolocation(): void {
     const geolocation = JSON.parse(localStorage.getItem('geolocation')!);
 
-    this.lat = parseFloat(geolocation.latitude);
-    this.lng = parseFloat(geolocation.longitude);
+    this.lat = parseFloat(geolocation?.latitude);
+    this.lng = parseFloat(geolocation?.longitude);
   }
 }
