@@ -6,6 +6,6 @@ export class AppPage {
   }
 
   async getTitleText(): Promise<string> {
-    return element(by.css('app-root mat-label')).getText();
+    return element(by.css('app-root button')).getText();
   }
 }
