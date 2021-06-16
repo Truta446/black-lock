@@ -1,0 +1,8 @@
+<mat-toolbar color="transparent" class="icon-both h-10">
+  <button mat-icon-button aria-hidden="false" aria-label="Voltar" routerLink="/geolocation/permission">
+    <mat-icon>arrow_back_ios_new</mat-icon>
+  </button>
+  <span class="ml-16">Lojas Próximas</span>
+</mat-toolbar>
+
+<div class="map" leaflet [leafletOptions]="options" *ngIf="!loadingMap"></div>

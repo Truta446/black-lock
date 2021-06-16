@@ -21,6 +21,18 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule)
+  },
+  {
+    path: 'geolocation',
+    loadChildren: () => import('./geolocation/geolocation.module').then(m => m.GeolocationModule)
+  },
+  {
+    path: 'wallet',
+    loadChildren: () => import('./wallet/wallet.module').then(m => m.WalletModule)
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }

@@ -1,0 +1,34 @@
+<mat-toolbar color="transparent" class="icon-both">
+  <button mat-icon-button aria-hidden="false" aria-label="Fechar" routerLink="/dashboard">
+    <mat-icon>arrow_back_ios_new</mat-icon>
+  </button>
+  <span class="ml-16">Adicionar Saldo</span>
+</mat-toolbar>
+<div class="p-16 main">
+  <div [formGroup]="form">
+    <p><strong>Quanto</strong> você deseja <strong>adicionar</strong> à sua carteira?</p>
+
+    <mat-form-field appearance="outline" class="w-100 amount">
+      <input
+        matInput
+        placeholder="Digite o valor"
+        type="tel"
+        [value]="form.value.amountCents"
+        (keyup)="transform($event)"
+        required
+      >
+      <mat-error>Obrigatório</mat-error>
+    </mat-form-field>
+  </div>
+
+  <button
+    class="w-100 mt-16"
+    mat-raised-button
+    color="primary"
+    routerLink="/wallet/method"
+    (click)="save()"
+    [disabled]="form.value.amountCents === 'R$ 0,00'"
+  >
+    AVANÇAR
+  </button>
+</div>

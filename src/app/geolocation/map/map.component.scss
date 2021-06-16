@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  height: 100%;
+}
+
+.ml-16 {
+  margin-left: 16px;
+}
+
+.map {
+  height: 50%;
+  width: 100%;
+}

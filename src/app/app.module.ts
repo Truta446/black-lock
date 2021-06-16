@@ -6,6 +6,7 @@ import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { registerLocaleData } from '@angular/common';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import locale from '@angular/common/locales/pt';
+import * as numeral from 'numeral';
 
 registerLocaleData(locale);
 
@@ -48,6 +49,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxViacepModule } from '@brunoc/ngx-viacep';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -55,13 +57,39 @@ import { environment } from '../environments/environment';
 import { ScannerComponent } from './scanner/scanner.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AlertComponent } from './alert/alert.component';
+import { LoadingComponent } from './loading/loading.component';
+import { ActivitiesComponent } from './activities/activities.component';
+
+numeral.register('locale', 'pt', {
+  delimiters: {
+    thousands: '.',
+    decimal: ','
+  },
+  abbreviations: {
+    thousand: 'k',
+    million: 'm',
+    billion: 'b',
+    trillion: 't'
+  },
+  ordinal: (num: number) => {
+    return num === 1 ? 'er' : 'ème';
+  },
+  currency: {
+    symbol: 'R$'
+  }
+});
+numeral.locale('pt');
 
 @NgModule({
   declarations: [
     AppComponent,
     ScannerComponent,
     DashboardComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AlertComponent,
+    LoadingComponent,
+    ActivitiesComponent
   ],
   imports: [
     BrowserModule,
@@ -114,6 +142,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
       preventDuplicates: true,
     }),
     NgxViacepModule,
+    LeafletModule
   ],
   providers: [
     {

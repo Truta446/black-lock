@@ -1,0 +1,38 @@
+
+:host {
+  display: contents;
+}
+
+.mat-list {
+  overflow: auto;
+  max-height: 75%;
+}
+
+mat-list-item.timeline {
+  .time {
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    left: 31px;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    border-left: dashed 1px rgba(#8c919e, 0.5);
+  }
+  mat-icon.mat-list-icon {
+    z-index: 1;
+    position: relative;
+    background: white;
+  }
+}
+
+button.mat-button {
+  width: 100%;
+}
+
+.color-red {
+  color: red;
+}
+
+.color-green {
+  color: green;
+}

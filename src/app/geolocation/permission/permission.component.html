@@ -1,0 +1,16 @@
+<mat-toolbar color="transparent" class="icon-both h-10">
+  <button mat-icon-button aria-hidden="false" aria-label="Voltar" routerLink="/dashboard">
+    <mat-icon>arrow_back_ios_new</mat-icon>
+  </button>
+  <span class="ml-16">Localização</span>
+</mat-toolbar>
+
+<div class="p-16 waiting">
+  <p class="text-center">Precisamos da sua localização para disponibilizar as informações dos pontos de acesso.</p>
+
+  <img src="assets/location.svg" alt="Location">
+
+  <button class="w-100" mat-raised-button color="primary" (click)="allowGeolocation()">
+    PERMITIR
+  </button>
+</div>
