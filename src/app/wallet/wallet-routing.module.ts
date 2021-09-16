@@ -6,6 +6,11 @@ import { MethodComponent } from './method/method.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'add-balance',
+    pathMatch: 'full'
+  },
+  {
     path: 'add-balance',
     component: AddBalanceComponent
   },

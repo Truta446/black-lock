@@ -50,7 +50,7 @@ export class MethodComponent implements OnInit, OnDestroy {
   async addBalance(): Promise<void> {
     try {
       const addBalance = JSON.parse(localStorage.getItem('addBalance')!);
-      const newBalance = this.user.balance + parseFloat(addBalance.amountCents);
+      const newBalance = Number(this.user?.balance) + parseFloat(addBalance.amountCents);
 
       await this.userService.addBalance(newBalance);
 

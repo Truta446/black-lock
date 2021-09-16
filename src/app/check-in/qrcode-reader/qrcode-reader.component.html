@@ -1,0 +1,22 @@
+<div class="scanner">
+  <mat-toolbar class="icon-both">
+    <button mat-icon-button class="white z-10" routerLink="/">
+      <mat-icon>arrow_back_ios_new</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <span class="white text">QRCode</span>
+    <span class="spacer"></span>
+  </mat-toolbar>
+
+  <zxing-scanner
+    *ngIf="scannerEnabled"
+    #scanner
+    (scanSuccess)="scanSuccessHandler($event)"
+  ></zxing-scanner>
+
+  <div class="scanner-text z-10">
+    <span class="z-10">
+      Aponte a câmera para a placa onde você estacionou.
+    </span>
+  </div>
+</div>

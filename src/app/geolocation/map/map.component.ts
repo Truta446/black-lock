@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { tileLayer, latLng, marker, icon } from 'leaflet';
 import { Subscription } from 'rxjs';
 
+import { SystemService } from '../../system.service';
 import { GeolocationService } from '../geolocation.service';
 import { AccessPoint } from '../../interfaces/access-point';
 
@@ -19,6 +20,7 @@ export class MapComponent implements OnInit, OnDestroy {
   onContentSubscriptionReady?: Subscription;
 
   constructor(
+    private sys: SystemService,
     private geolocationService: GeolocationService
   ) {
     this.loadingMap = true;
@@ -88,9 +90,9 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   getGeolocation(): void {
-    const geolocation = JSON.parse(localStorage.getItem('geolocation')!);
+    const geolocation = this.sys.getDataToLocalStorage();
 
-    this.lat = parseFloat(geolocation?.latitude);
-    this.lng = parseFloat(geolocation?.longitude);
+    this.lat = parseFloat(geolocation?.location?.latitude);
+    this.lng = parseFloat(geolocation?.location?.longitude);
   }
 }

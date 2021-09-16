@@ -36,4 +36,8 @@ export class UserService {
       balance: newBalance
     });
   }
+
+  createOrUpdateUser(user: User): void {
+    this.usersCollection?.doc(this.userId).set(user, { merge: true });
+  }
 }

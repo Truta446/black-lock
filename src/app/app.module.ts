@@ -57,7 +57,6 @@ import { environment } from '../environments/environment';
 import { ScannerComponent } from './scanner/scanner.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AlertComponent } from './alert/alert.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ActivitiesComponent } from './activities/activities.component';
 
@@ -87,7 +86,6 @@ numeral.locale('pt');
     ScannerComponent,
     DashboardComponent,
     PageNotFoundComponent,
-    AlertComponent,
     LoadingComponent,
     ActivitiesComponent
   ],

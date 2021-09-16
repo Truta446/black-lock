@@ -55,10 +55,13 @@ mat-card.action {
   }
   color: rgba(white, 0.9);
   &.pay-bill {
-    background-color: #FF8600;
+    background-color: #38a32a;
+  }
+  &.recent-activities {
+    background-color: #6C7B95;
   }
   &.add-wallet {
-    background-color: #6C7B95;
+    background-color: #000000;
   }
   &.topup-phone {
     background-color: #0D3F67;

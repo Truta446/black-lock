@@ -34,9 +34,9 @@ export class ActivitiesService {
           if (this.lastDocument) {
             return ref.orderBy('startHour', 'desc')
               .startAfter(this.lastDocument)
-              .limit(5);
+              .limit(7);
           } else {
-            return ref.orderBy('startHour', 'desc').limit(5);
+            return ref.orderBy('startHour', 'desc').limit(7);
           }
         }
       )
@@ -51,10 +51,7 @@ export class ActivitiesService {
         })
       )
       .toPromise()
-      .then((activities) => {
-        this.activities = this.activities.concat(activities);
-        return this.activities;
-      })
+      .then((activities) => activities)
       .catch((err) => console.log(err)) as Promise<Activity[]>;
   }
 

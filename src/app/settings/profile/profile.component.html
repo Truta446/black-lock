@@ -1,1 +1,200 @@
-<p>profile works!</p>
+<mat-toolbar color="transparent" class="icon-both">
+  <button mat-icon-button aria-hidden="false" aria-label="Voltar" routerLink="/">
+    <mat-icon>arrow_back_ios_new</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <span class="ml-16">Seus dados</span>
+  <span class="spacer"></span>
+  <span class="spacer"></span>
+</mat-toolbar>
+
+<div class="p-16 main">
+  <form>
+    <div class="subtitle">
+      <span>Dados Pessoais</span>
+      <button
+        mat-icon-button
+        #tooltip="matTooltip"
+        (click)="tooltip.toggle()"
+        color="primary"
+        matTooltip="Para seguir com o pagamento de forma segura, iremos precisar de alguns dados pessoais."
+        matTooltipClass="tooltip"
+        aria-label="Button that displays a tooltip with a custom message"
+      >
+        <img src="../../../assets/info.svg" alt="Info Icon">
+      </button>
+    </div>
+
+    <mat-form-field appearance="standard" class="w-100">
+      <mat-label>Nome</mat-label>
+      <input
+        matInput
+        name="name"
+        type="text"
+        placeholder="Digite seu nome"
+        [(ngModel)]="name"
+        #nameModel="ngModel"
+        required
+      >
+      <mat-error *ngIf="nameModel.invalid">Obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="w-100">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        name="email"
+        type="text"
+        placeholder="Digite seu email"
+        [(ngModel)]="email"
+        #emailModel="ngModel"
+        required
+      >
+      <mat-error *ngIf="emailModel.invalid">Obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="w-100">
+      <mat-label>CPF</mat-label>
+      <input
+        matInput
+        name="cpf"
+        type="tel"
+        [(ngModel)]="cpf"
+        mask="000.000.000-00"
+        placeholder="Digite seu CPF"
+        #cpfModel="ngModel"
+        required
+        maxlength="14"
+      >
+      <mat-error *ngIf="cpfModel.invalid">Obrigatório</mat-error>
+    </mat-form-field>
+
+    <div class="subtitle">
+      <span>Endereço</span>
+    </div>
+
+    <mat-form-field appearance="standard" class="w-100">
+      <mat-label>CEP</mat-label>
+      <input
+        matInput
+        name="cep"
+        type="tel"
+        [(ngModel)]="cep"
+        [disabled]="loading"
+        mask="00000-000"
+        placeholder="Digite seu CEP"
+        #cepModel="ngModel"
+        (keyup)="searchPostalCode()"
+        required
+        maxlength="9"
+        [disabled]="!knowCEP"
+      >
+      <mat-progress-spinner
+        matSuffix
+        diameter="30"
+        *ngIf="loading"
+        mode="indeterminate"
+      ></mat-progress-spinner>
+      <mat-error *ngIf="cepModel.invalid">Obrigatório</mat-error>
+    </mat-form-field>
+
+    <div class="cep">
+      <span (click)="onDisableCEP()">Não sei o meu CEP</span>
+    </div>
+
+    <div class="flex-input">
+      <mat-form-field appearance="standard" class="w-100">
+        <mat-label>Rua</mat-label>
+        <input
+          matInput
+          name="street"
+          type="text"
+          [(ngModel)]="street"
+          #streetModel="ngModel"
+          placeholder="Digite sua rua"
+          required
+        >
+        <mat-error *ngIf="streetModel.invalid">Obrigatório</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard" class="w-100">
+        <mat-label>Número</mat-label>
+        <input
+          matInput
+          name="number"
+          type="tel"
+          mask="09999999"
+          [(ngModel)]="number"
+          #numberModel="ngModel"
+          placeholder="Digite o número residencial"
+          required
+        >
+        <mat-error *ngIf="numberModel.invalid">Obrigatório</mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="standard" class="w-100">
+      <mat-label>Complemento</mat-label>
+      <input
+        matInput
+        name="complement"
+        type="text"
+        [(ngModel)]="complement"
+        placeholder="Digite seu complemento"
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="w-100">
+      <mat-label>Bairro</mat-label>
+      <input
+        matInput
+        name="neighborhood"
+        type="text"
+        [(ngModel)]="neighborhood"
+        #neighborhoodModel="ngModel"
+        placeholder="Digite seu bairro"
+        required
+      >
+      <mat-error *ngIf="neighborhoodModel.invalid">Obrigatório</mat-error>
+    </mat-form-field>
+
+    <div class="flex-input">
+      <mat-form-field appearance="standard" class="w-100">
+        <mat-label>Cidade</mat-label>
+        <input
+          matInput
+          name="city"
+          type="text"
+          [(ngModel)]="city"
+          #cityModel="ngModel"
+          placeholder="Digite sua cidade"
+          required
+        >
+        <mat-error *ngIf="cityModel.invalid">Obrigatório</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard" class="w-100">
+        <mat-label>Estado</mat-label>
+        <input
+          matInput
+          name="state"
+          type="text"
+          [(ngModel)]="state"
+          #stateModel="ngModel"
+          placeholder="Digite seu estado"
+          required
+        >
+        <mat-error *ngIf="stateModel.invalid">Obrigatório</mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <button
+    class="w-100"
+    mat-raised-button
+    color="primary"
+    (click)="saveUser()"
+  >
+    AVANÇAR
+  </button>
+</div>

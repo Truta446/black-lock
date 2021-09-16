@@ -1,0 +1,86 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  height: 100%;
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
+}
+
+form {
+  margin: 0 10px;
+}
+
+.center {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+
+  .separator {
+    width: 80%;
+    height: 10px;
+    border-bottom: 1px solid #CCCED0;
+    text-align: center;
+
+    > span {
+      color: #CCCED0;
+      padding: 0 10px;
+      background-color: #fff;
+    }
+  }
+}
+
+.flex-input {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  :first-child {
+    width: 73%;
+  }
+
+  :last-child {
+    width: 22%;
+  }
+}
+
+::ng-deep .mat-input-element {
+  width: 100% !important;
+}
+
+.subtitle {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+
+  > span {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: flex-end;
+    text-align: right;
+    color: #2E3B96;
+  }
+}
+
+.cep {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+
+  > span {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: #828E9F;
+  }
+}
