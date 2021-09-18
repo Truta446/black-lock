@@ -16,7 +16,7 @@ export class UserService {
 
   constructor(
     private readonly fireStore: AngularFirestore,
-    private readonly fbAuth: AngularFireAuth
+    fbAuth: AngularFireAuth
   ) {
     fbAuth.idTokenResult.subscribe(token => {
       if (token) {
@@ -37,7 +37,7 @@ export class UserService {
     });
   }
 
-  createOrUpdateUser(user: User): void {
+  updateUser(user: User): void {
     this.usersCollection?.doc(this.userId).set(user, { merge: true });
   }
 }

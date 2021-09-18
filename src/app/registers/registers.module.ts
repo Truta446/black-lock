@@ -15,18 +15,19 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
 
-import { SettingsRoutingModule } from './settings-routing.module';
-import { ProfileComponent } from './profile/profile.component';
+import { RegistersRoutingModule } from './registers-routing.module';
+import { MotorcycleComponent } from './motorcycle/motorcycle.component';
 
 
 @NgModule({
-  declarations: [ProfileComponent],
+  declarations: [MotorcycleComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SettingsRoutingModule,
+    RegistersRoutingModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -38,8 +39,9 @@ import { ProfileComponent } from './profile/profile.component';
     MatTooltipModule,
     MatRadioModule,
     MatCheckboxModule,
+    MatSelectModule,
     NgxViacepModule,
-    NgxMaskModule.forChild()
+    NgxMaskModule.forChild(),
   ]
 })
-export class SettingsModule { }
+export class RegistersModule { }

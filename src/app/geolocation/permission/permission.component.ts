@@ -19,7 +19,7 @@ export class PermissionComponent {
   allowGeolocation(): void {
     const coords = this.sys.getDataToLocalStorage();
 
-    if (!coords) {
+    if (!coords.location) {
       navigator.geolocation.getCurrentPosition(async (position: any) => {
         const location = {
           latitude: position.coords.latitude.toFixed(7),

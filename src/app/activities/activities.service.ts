@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
 import { map, take } from 'rxjs/operators';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Activity } from '../interfaces/activity';
 
@@ -44,10 +45,17 @@ export class ActivitiesService {
       .pipe(
         take(1),
         map(snap => {
-          this.lastDocument = snap.docs[snap.docs.length - 1];
-          return snap.docs.map(docSnap => {
-            return docSnap.data();
-          });
+          const last = snap.docs[snap.docs.length - 1];
+
+          if (last) {
+            this.lastDocument = last;
+
+            return snap.docs.map(docSnap => {
+              return docSnap.data();
+            });
+          }
+
+          return [];
         })
       )
       .toPromise()
@@ -56,7 +64,10 @@ export class ActivitiesService {
   }
 
   addActivity(data: Activity): void {
-    this.fireStore.collection(`users/${this.userId}/activities`)?.doc().set({
+    const id = uuidv4();
+
+    this.fireStore.collection(`users/${this.userId}/activities`)?.doc(id).set({
+      id,
       amount: data.amount,
       description: data.description,
       startHour: data.startHour,

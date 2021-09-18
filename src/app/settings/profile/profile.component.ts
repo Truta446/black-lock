@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy, NgZone, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { NgxViacepService } from '@brunoc/ngx-viacep';
 import { ToastrService } from 'ngx-toastr';
@@ -40,8 +39,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   subscription?: Subscription;
 
   constructor(
-    private ngZone: NgZone,
-    private router: Router,
     private viacep: NgxViacepService,
     private toastr: ToastrService,
     private userService: UserService
@@ -109,11 +106,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
       }
     };
 
-    this.userService.createOrUpdateUser(user);
+    this.userService.updateUser(user);
 
-    this.ngZone.run(() => {
-      this.router.navigate(['/restaurant/payment']);
-    });
+    this.toastr.success('Dados atualizados com sucesso.');
   }
 
   async searchPostalCode(): Promise<void> {
