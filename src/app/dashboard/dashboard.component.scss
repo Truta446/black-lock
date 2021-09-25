@@ -18,7 +18,7 @@
   position: absolute;
   right: 16px;
   bottom: -20px;
-  color:  mat-color($md-neru, 500);
+  color:  mat-color($md-black-lock, 500);
 }
 
 .horizontal-scroll {
@@ -49,18 +49,12 @@
 mat-card.action {
   line-height: 1;
   border-radius: 10px;
+  color: rgba(white, 0.9);
+  background-color: #000000;
+  background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
+
   .title {
     font-size: 18px;
     line-height: 1.2;
-  }
-  color: rgba(white, 0.9);
-  &.pay-bill {
-    background-color: #FF8600;
-  }
-  &.add-wallet {
-    background-color: #6C7B95;
-  }
-  &.topup-phone {
-    background-color: #0D3F67;
   }
 }

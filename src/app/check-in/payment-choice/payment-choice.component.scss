@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  height: 100%;
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
+}
+
+.form-method {
+  .mat-radio-group {
+    display: grid;
+    place-content: center;
+
+    .mat-radio-button {
+      margin: 30px 0;
+    }
+  }
+}

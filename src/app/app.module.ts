@@ -13,7 +13,7 @@ registerLocaleData(locale);
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireFunctionsModule } from '@angular/fire/functions';
+import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -57,7 +57,6 @@ import { environment } from '../environments/environment';
 import { ScannerComponent } from './scanner/scanner.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AlertComponent } from './alert/alert.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ActivitiesComponent } from './activities/activities.component';
 
@@ -87,7 +86,6 @@ numeral.locale('pt');
     ScannerComponent,
     DashboardComponent,
     PageNotFoundComponent,
-    AlertComponent,
     LoadingComponent,
     ActivitiesComponent
   ],
@@ -160,6 +158,7 @@ numeral.locale('pt');
       },
     },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
+    { provide: REGION, useValue: 'southamerica-east1' },
   ],
   bootstrap: [AppComponent]
 })

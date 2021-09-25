@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
 import { map, take } from 'rxjs/operators';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Activity } from '../interfaces/activity';
 
@@ -10,8 +11,7 @@ import { Activity } from '../interfaces/activity';
   providedIn: 'root'
 })
 export class ActivitiesService {
-
-  private contentReadySource = new BehaviorSubject(0);
+  private contentReadySource = new BehaviorSubject(1);
   contentReady = this.contentReadySource.asObservable();
   userId?: string;
   activities: Array<{}> = [];
@@ -19,14 +19,18 @@ export class ActivitiesService {
 
   constructor(private readonly fireStore: AngularFirestore, fbAuth: AngularFireAuth) {
     fbAuth.idTokenResult.subscribe(result => {
-      if (result){
+      if (result) {
         this.userId = result.claims.user_id;
         this.contentReadySource.next(0);
       }
     });
   }
 
-  getActivities(): Promise<Activity[]> {
+  getActivities(isFirst: boolean): Promise<Activity[]> {
+    if (isFirst) {
+      this.lastDocument = {};
+    }
+
     return this.fireStore
       .collection(
         `users/${this.userId}/activities`,
@@ -34,9 +38,9 @@ export class ActivitiesService {
           if (this.lastDocument) {
             return ref.orderBy('startHour', 'desc')
               .startAfter(this.lastDocument)
-              .limit(5);
+              .limit(10);
           } else {
-            return ref.orderBy('startHour', 'desc').limit(5);
+            return ref.orderBy('startHour', 'desc').limit(10);
           }
         }
       )
@@ -44,22 +48,29 @@ export class ActivitiesService {
       .pipe(
         take(1),
         map(snap => {
-          this.lastDocument = snap.docs[snap.docs.length - 1];
-          return snap.docs.map(docSnap => {
-            return docSnap.data();
-          });
+          const last = snap.docs[snap.docs.length - 1];
+
+          if (last) {
+            this.lastDocument = last;
+
+            return snap.docs.map(docSnap => {
+              return docSnap.data();
+            });
+          }
+
+          return [];
         })
       )
       .toPromise()
-      .then((activities) => {
-        this.activities = this.activities.concat(activities);
-        return this.activities;
-      })
+      .then((activities) => activities)
       .catch((err) => console.log(err)) as Promise<Activity[]>;
   }
 
   addActivity(data: Activity): void {
-    this.fireStore.collection(`users/${this.userId}/activities`)?.doc().set({
+    const id = uuidv4();
+
+    this.fireStore.collection(`users/${this.userId}/activities`)?.doc(id).set({
+      id,
       amount: data.amount,
       description: data.description,
       startHour: data.startHour,

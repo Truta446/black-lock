@@ -84,11 +84,11 @@ button.mat-button-base:not(.mat-fab):not(.mat-mini-fab) {
 
 mat-toolbar.mat-toolbar[color="transparent"] {
   background-color: transparent;
-  color: mat-color($md-neru, 900);
+  color: mat-color($md-black-lock, 900);
 }
 mat-toolbar.mat-toolbar[color="white"] {
   background-color: white;
-  color: mat-color($md-neru, 900);
+  color: mat-color($md-black-lock, 900);
 }
 
 mat-toolbar.icon-left, mat-toolbar-row.icon-left {
@@ -104,10 +104,6 @@ mat-toolbar.icon-both, mat-toolbar-row.icon-both {
 
 mat-bottom-sheet-container.mat-bottom-sheet-container {
   padding: 0;
-}
-
-a:visited {
-  color: mat-color($md-neruaccent, 900);
 }
 
 .dashboard-tabs .mat-tab-body-wrapper {
@@ -176,8 +172,13 @@ p {
 .w-100 {
   width: 100%;
 }
+
 .mt-16 {
   margin-top: 16px !important;
+}
+
+.ml-16 {
+  margin-left: 16px;
 }
 
 p {

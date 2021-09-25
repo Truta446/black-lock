@@ -1,0 +1,95 @@
+<mat-toolbar color="transparent" class="icon-both">
+  <button mat-icon-button aria-hidden="false" aria-label="Voltar" routerLink="/registers">
+    <mat-icon>arrow_back_ios_new</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <span class="ml-16">Cadastro de veículos</span>
+  <span class="spacer"></span>
+  <span class="spacer"></span>
+</mat-toolbar>
+
+<div class="p-16 main">
+  <form>
+    <div class="subtitle">
+      <span>Dados do veículo</span>
+      <button
+        mat-icon-button
+        #tooltip="matTooltip"
+        (click)="tooltip.toggle()"
+        color="primary"
+        matTooltip="Para seguir com o pagamento de forma segura, iremos precisar de alguns dados pessoais."
+        matTooltipClass="tooltip"
+        aria-label="Button that displays a tooltip with a custom message"
+      >
+        <img src="../../../assets/info.svg" alt="Info Icon">
+      </button>
+    </div>
+
+    <mat-form-field appearance="standard" class="w-100">
+      <mat-label>Descrição</mat-label>
+      <input
+        matInput
+        name="description"
+        type="text"
+        placeholder="Descrição do seu veículo"
+        [(ngModel)]="description"
+        #descriptionModel="ngModel"
+        required
+      >
+      <mat-error *ngIf="descriptionModel.invalid">Obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="w-100">
+      <mat-label>Placa</mat-label>
+      <input
+        matInput
+        name="plate"
+        type="text"
+        placeholder="Digite a placa"
+        mask="SSS-0A00"
+        [(ngModel)]="plate"
+        #plateModel="ngModel"
+        required
+        maxlength="8"
+        (input)="plate = plate.toUpperCase()"
+        [specialCharacters]="['-']"
+      >
+      <mat-error *ngIf="plateModel.invalid">Obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="w-100">
+      <mat-label>Ano</mat-label>
+      <input
+        matInput
+        name="year"
+        type="tel"
+        [(ngModel)]="year"
+        mask="0000"
+        placeholder="Digite o ano"
+        #yearModel="ngModel"
+        required
+        maxlength="4"
+      >
+      <mat-error *ngIf="yearModel.invalid">Obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="w-100">
+      <mat-label>Tipo</mat-label>
+      <mat-select name="type" [(ngModel)]="type">
+        <mat-option value="car">Carro</mat-option>
+        <mat-option value="motorcycle">Moto</mat-option>
+        <mat-option value="bicycle">Bicileta</mat-option>
+        <mat-option value="scooter">Patinete</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+
+  <button
+    class="w-100"
+    mat-raised-button
+    color="primary"
+    (click)="saveMotorcycle()"
+  >
+    SALVAR
+  </button>
+</div>

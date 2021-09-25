@@ -1,6 +1,8 @@
 import { Component, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { SystemService } from '../../system.service';
+
 @Component({
   selector: 'app-permission',
   templateUrl: './permission.component.html',
@@ -10,20 +12,21 @@ export class PermissionComponent {
 
   constructor(
     private router: Router,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private sys: SystemService
   ) { }
 
   allowGeolocation(): void {
-    const coords = JSON.parse(localStorage.getItem('geolocation')!);
+    const coords = this.sys.getDataToLocalStorage();
 
-    if (!coords) {
+    if (!coords.location) {
       navigator.geolocation.getCurrentPosition(async (position: any) => {
         const location = {
           latitude: position.coords.latitude.toFixed(7),
           longitude: position.coords.longitude.toFixed(7)
         };
 
-        await localStorage.setItem('geolocation', JSON.stringify(location));
+        await this.sys.insertDataOnLocalStorage({ location });
 
         this.ngZone.run(() => {
           this.router.navigate(['/geolocation/map']);

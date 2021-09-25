@@ -2,8 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { tileLayer, latLng, marker, icon } from 'leaflet';
 import { Subscription } from 'rxjs';
 
-import { GeolocationService } from '../geolocation.service';
-import { AccessPoint } from '../../interfaces/access-point';
+import { SystemService } from '../../system.service';
+import { LotService } from '../../services/lot.service';
+import { Lot } from '../../interfaces/lot';
 
 @Component({
   selector: 'app-map',
@@ -14,12 +15,13 @@ export class MapComponent implements OnInit, OnDestroy {
   loadingMap: boolean;
   lat: number;
   lng: number;
-  accessPoints: AccessPoint[];
+  accessPoints: Lot[];
   options: any;
   onContentSubscriptionReady?: Subscription;
 
   constructor(
-    private geolocationService: GeolocationService
+    private sys: SystemService,
+    private lotService: LotService
   ) {
     this.loadingMap = true;
     this.lat = 0;
@@ -29,7 +31,7 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.onContentSubscriptionReady = this.geolocationService.getAccessPoints()?.subscribe(accessPoints => {
+    this.onContentSubscriptionReady = this.lotService.getLots()?.subscribe(accessPoints => {
       this.accessPoints = accessPoints;
 
       this.options = {
@@ -88,9 +90,9 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   getGeolocation(): void {
-    const geolocation = JSON.parse(localStorage.getItem('geolocation')!);
+    const geolocation = this.sys.getDataToLocalStorage();
 
-    this.lat = parseFloat(geolocation?.latitude);
-    this.lng = parseFloat(geolocation?.longitude);
+    this.lat = parseFloat(geolocation?.location?.latitude);
+    this.lng = parseFloat(geolocation?.location?.longitude);
   }
 }

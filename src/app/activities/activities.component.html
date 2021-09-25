@@ -1,27 +1,34 @@
-<mat-list>
-  <h3 matSubheader>{{ title }}</h3>
-  <ng-container *ngIf="activities.length > 0">
-    <mat-list-item class="timeline" *ngFor="let activity of activities">
-      <div class="time"></div>
-      <ng-container matListIcon [ngSwitch]="activity.type">
-        <mat-icon matListIcon *ngSwitchCase="'CHECKIN'">done_all</mat-icon>
-        <mat-icon matListIcon *ngSwitchCase="'ADD'">attach_money</mat-icon>
-        <mat-icon matListIcon *ngSwitchDefault>menu</mat-icon>
-      </ng-container>
-      <h4 matLine>
-        <small>{{ activity.startHour | date: 'dd/MM/yyyy HH:mm' }}</small>
-      </h4>
-      <p matLine wrap>{{ activity.description }} - <span class="{{ activity.type === 'CHECKIN' ? 'color-red' : 'color-green' }}">{{ (activity.amount / 100) | currency: 'R$ ' }}</span></p>
-    </mat-list-item>
-  </ng-container>
+<mat-toolbar color="transparent" class="icon-both h-10">
+  <button mat-icon-button aria-hidden="false" aria-label="Voltar" routerLink="/">
+    <mat-icon>arrow_back_ios_new</mat-icon>
+  </button>
+  <span class="ml-16">Atividades Recentes</span>
+</mat-toolbar>
+<div class="p-16">
+  <mat-list>
+    <ng-container *ngIf="activities.length > 0">
+      <mat-list-item class="timeline" *ngFor="let activity of activities">
+        <div class="time"></div>
+        <ng-container matListIcon [ngSwitch]="activity.type">
+          <mat-icon matListIcon *ngSwitchCase="'CHECKIN'">done_all</mat-icon>
+          <mat-icon matListIcon *ngSwitchCase="'ADD'">attach_money</mat-icon>
+          <mat-icon matListIcon *ngSwitchDefault>menu</mat-icon>
+        </ng-container>
+        <h4 matLine>
+          <small>{{ activity.startHour | date: 'dd/MM/yyyy HH:mm' }}</small>
+        </h4>
+        <p matLine wrap>{{ activity.description }} - <span class="{{ activity.type === 'CHECKIN' ? 'color-red' : 'color-green' }}">{{ (activity.amount / 100) | currency: 'R$ ' }}</span></p>
+      </mat-list-item>
+    </ng-container>
 
-  <ng-container *ngIf="activities.length === 0 && !loading">
-    <mat-list-item class="timeline">
-      <div class="time"></div>
-      <mat-icon matListIcon>store</mat-icon>
-      <h4 matLine>Nada por aqui ainda.</h4>
-    </mat-list-item>
-  </ng-container>
-</mat-list>
-<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
-<button mat-button color="primary" (click)="onLoadMore()">CARREGAR MAIS</button>
+    <ng-container *ngIf="activities.length === 0 && !loading">
+      <mat-list-item class="timeline">
+        <div class="time"></div>
+        <mat-icon matListIcon>store</mat-icon>
+        <h4 matLine>Nada por aqui ainda.</h4>
+      </mat-list-item>
+    </ng-container>
+  </mat-list>
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  <button mat-button color="primary" (click)="onLoadMore()">CARREGAR MAIS</button>
+</div>

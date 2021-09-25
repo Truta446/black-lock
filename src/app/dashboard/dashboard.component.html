@@ -18,29 +18,37 @@
   <div class="text-left" style="display: flex; flex-direction: column; padding: 24px; flex-grow: 1;">
     <small>Seu saldo atual</small>
     <p class="text-left big" *ngIf="user">
-      <strong><small>R$</small> {{ (user.balance / 100) | currency: ' ' }}</strong>
+      <strong><small>R$</small> {{ ((user?.balance || 0) / 100) | currency: ' ' }}</strong>
     </p>
   </div>
 </div>
-
-<app-activities title="Atividades Recentes"></app-activities>
 
 <span class="spacer"></span>
 
 <div class="mat-list-base">
   <h3 class="mat-subheader">O que você gostaria de fazer?</h3>
   <div class="horizontal-scroll">
-    <mat-card matRipple routerLink="/" class="action pay-bill">
+    <mat-card matRipple routerLink="/check-in" class="action">
       <div class="title"><strong>Check-in</strong></div><br>
-      <small>Faça o check-in do seu veículo aqui.</small>
+      <small>Faça o check-in do seu veículo.</small>
     </mat-card>
 
-    <mat-card matRipple routerLink="/geolocation/permission" class="action add-wallet">
+    <mat-card matRipple routerLink="/activities" class="action">
+      <div class="title"><strong>Atividades Recentes</strong></div><br>
+      <small>Veja suas atividades mais recentes.</small>
+    </mat-card>
+
+    <mat-card matRipple routerLink="/registers" class="action">
+      <div class="title"><strong>Cadastro de motos</strong></div><br>
+      <small>Confira informações das suas motos.</small>
+    </mat-card>
+
+    <mat-card matRipple routerLink="/geolocation" class="action">
       <div class="title"><strong>Onde tem Black Lock</strong></div><br>
       <small>Procure no mapa onde possui pontos de acesso.</small>
     </mat-card>
 
-    <mat-card matRipple routerLink="/wallet/add-balance" class="action topup-phone">
+    <mat-card matRipple routerLink="/wallet" class="action">
       <div class="title"><strong>Adquira Créditos</strong></div><br>
       <small>Faça a recarga do seu saldo por aqui.</small>
     </mat-card>

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AlertComponent } from './alert/alert.component';
+
 import { LoadingComponent } from './loading/loading.component';
+import { LocalStorage } from './interfaces/local-storage'
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,11 @@ export class SystemService {
   openLoading(message: string | null = null): any {
     this.loadingRef = this.dialog.open(LoadingComponent, {panelClass: 'transparent'});
     this.loadingRef.disableClose = true;
+
     if (message) {
       this.loadingRef.componentInstance.message = message;
     }
+
     return this.loadingRef;
   }
 
@@ -26,29 +29,30 @@ export class SystemService {
     this.loadingRef.close();
   }
 
-  openSuccess(message: string | null = null): any {
-    this.successRef = this.dialog.open(LoadingComponent, {
-      panelClass: 'success', backdropClass: 'success'
-    });
-    this.successRef.componentInstance.loading = 'success';
-    if (message) {
-      this.successRef.componentInstance.message = message;
-    }
-    setTimeout(() => this.successRef.close(), 2000);
-    return this.successRef;
+  private _getAllFromLocalStorage(): LocalStorage {
+    const result = localStorage.getItem('blacklock');
+    return JSON.parse(result || '{}');
   }
 
-  openDialog(title: string = '', message: string = 'Alerta'): any {
-    this.dialogRef = this.dialog.open(AlertComponent, {
-      data: {
-        title,
-        message
-      }
-    });
-    return this.dialogRef;
+  insertDataOnLocalStorage(data: any): void {
+    const blacklock: any = this._getAllFromLocalStorage();
+    const key = Object.keys(data)[0] as string;
+
+    blacklock[key] = data[key];
+
+    localStorage.setItem('blacklock', JSON.stringify(blacklock));
   }
 
-  closeDialog(): void {
-    this.dialogRef.close();
+  getDataToLocalStorage(): LocalStorage {
+    return this._getAllFromLocalStorage();
+  }
+
+  cleanLocalStorage(): void {
+    const data = {
+      location: {},
+      amountCents: 0
+    };
+
+    localStorage.setItem('blacklock', JSON.stringify(data));
   }
 }

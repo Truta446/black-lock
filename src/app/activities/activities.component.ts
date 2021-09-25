@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ActivitiesService } from './activities.service';
@@ -14,13 +14,13 @@ export class ActivitiesComponent implements OnInit, OnDestroy {
   activities: Activity[] = [];
   onContentReady?: Subscription;
 
-  @Input() title = '';
-
   constructor(private activitiesService: ActivitiesService) { }
 
   ngOnInit(): void {
-    this.onContentReady = this.activitiesService.contentReady.subscribe(async () => {
-      this.activities = await this.activitiesService.getActivities();
+    this.onContentReady = this.activitiesService.contentReady.subscribe(async (result: number) => {
+      if (!!result) { return; }
+
+      this.activities = await this.activitiesService.getActivities(true);
 
       this.loading = false;
     });
@@ -34,7 +34,11 @@ export class ActivitiesComponent implements OnInit, OnDestroy {
     try {
       this.loading = true;
 
-      this.activities = await this.activitiesService.getActivities();
+      const activities = await this.activitiesService.getActivities(false);
+
+      activities.forEach(activity => {
+        this.activities.push(activity);
+      });
     } catch (err) {
       console.log(err);
     } finally {

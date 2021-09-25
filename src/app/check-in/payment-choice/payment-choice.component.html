@@ -1,0 +1,32 @@
+<mat-toolbar color="transparent" class="icon-both">
+  <button mat-icon-button aria-hidden="false" aria-label="Voltar" routerLink="/check-in/hours-choice">
+    <mat-icon>arrow_back_ios_new</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <span class="ml-16">Método de Pagamento</span>
+  <span class="spacer"></span>
+  <span class="spacer"></span>
+</mat-toolbar>
+
+<div class="p-16 main">
+  <form class="form-method">
+    <mat-radio-group color="primary" name="option" [(ngModel)]="option">
+      <mat-radio-button
+        *ngFor="let method of methods"
+        [value]="method.value"
+        [disabled]="method.disabled"
+      >
+        {{ method.name }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </form>
+
+  <button
+    class="w-100"
+    mat-raised-button
+    color="primary"
+    (click)="checkIn()"
+  >
+    CHECK-IN
+  </button>
+</div>

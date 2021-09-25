@@ -1,75 +1,41 @@
 @import '~@angular/material/theming';
 
-$md-neru: (
-    50 : #e6e7f2,
-    100 : #c0c4e0,
-    200 : #979dcb,
-    300 : #6d76b6,
-    400 : #4d58a6,
-    500 : #2e3b96,
-    600 : #29358e,
-    700 : #232d83,
-    800 : #1d2679,
-    900 : #121968,
-    A100 : #9ea4ff,
-    A200 : #6b74ff,
-    A400 : #3845ff,
-    A700 : #1f2dff,
-    contrast: (
-        50 : #000000,
-        100 : #000000,
-        200 : #000000,
-        300 : #ffffff,
-        400 : #ffffff,
-        500 : #ffffff,
-        600 : #ffffff,
-        700 : #ffffff,
-        800 : #ffffff,
-        900 : #ffffff,
-        A100 : #000000,
-        A200 : #000000,
-        A400 : #ffffff,
-        A700 : #ffffff,
-    )
+$md-black-lock: (
+  50: #e6e7f2,
+  100: #000000,
+  200: #000000,
+  300: #000000,
+  400: #000000,
+  500: #000000,
+  600: #000000,
+  700: #000000,
+  800: #000000,
+  900: #000000,
+  A100: #000000,
+  A200: #000000,
+  A400: #000000,
+  A700: #000000,
+  contrast: (
+    50: #ffffff,
+    100: #ffffff,
+    200: #ffffff,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #ffffff,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #ffffff,
+  )
 );
 
-$md-neruaccent: (
-    50 : #e5f9f9,
-    100 : #bef0f1,
-    200 : #92e7e8,
-    300 : #66dddf,
-    400 : #46d5d8,
-    500 : #25ced1,
-    600 : #21c9cc,
-    700 : #1bc2c6,
-    800 : #16bcc0,
-    900 : #0db0b5,
-    A100 : #e2feff,
-    A200 : #affdff,
-    A400 : #7cfbff,
-    A700 : #63faff,
-    contrast: (
-        50 : #000000,
-        100 : #000000,
-        200 : #000000,
-        300 : #000000,
-        400 : #000000,
-        500 : #000000,
-        600 : #000000,
-        700 : #000000,
-        800 : #000000,
-        900 : #ffffff,
-        A100 : #000000,
-        A200 : #000000,
-        A400 : #000000,
-        A700 : #000000,
-    )
-);
+$black-lock-app-primary: mat-palette($md-black-lock, 600);
+$black-lock-app-warn: mat-palette($mat-red);
 
-$neru-app-primary: mat-palette($md-neru, 600);
-$neru-app-accent: mat-palette($md-neruaccent, 500, 700, 900);
-$neru-app-warn: mat-palette($mat-red);
+$black-lock-app-theme: mat-light-theme($black-lock-app-primary, $black-lock-app-warn);
 
-$neru-app-theme: mat-light-theme($neru-app-primary, $neru-app-accent, $neru-app-warn);
-
-@include angular-material-theme($neru-app-theme);
+@include angular-material-theme($black-lock-app-theme);
