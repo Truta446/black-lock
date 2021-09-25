@@ -13,7 +13,7 @@ registerLocaleData(locale);
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireFunctionsModule } from '@angular/fire/functions';
+import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -158,6 +158,7 @@ numeral.locale('pt');
       },
     },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
+    { provide: REGION, useValue: 'southamerica-east1' },
   ],
   bootstrap: [AppComponent]
 })

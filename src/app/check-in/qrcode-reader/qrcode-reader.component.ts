@@ -1,7 +1,10 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { take } from 'rxjs/operators';
 
 import { SystemService } from '../../system.service';
+import { LotService } from '../../services/lot.service';
 
 @Component({
   selector: 'app-qrcode-reader',
@@ -14,7 +17,9 @@ export class QrcodeReaderComponent implements OnInit {
   constructor(
     private ngZone: NgZone,
     private router: Router,
-    private sys: SystemService
+    private toastr: ToastrService,
+    private sys: SystemService,
+    private lotService: LotService
   ) {
     this.scannerEnabled = true;
   }
@@ -22,13 +27,26 @@ export class QrcodeReaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  scanSuccessHandler(lotNumber: string): void {
-    this.scannerEnabled = false;
+  async scanSuccessHandler(lotNumber: string): Promise<void> {
+    try {
+      const lot = await this.lotService.getLotDetails(lotNumber)
+      ?.pipe(take(1))
+      .toPromise();
 
-    this.sys.insertDataOnLocalStorage({ lotNumber });
+      if (!lot) {
+        this.toastr.error('QRCode inválido.');
+        return;
+      }
 
-    this.ngZone.run(() => {
-      this.router.navigate(['/check-in/hours-choice']);
-    });
+      this.scannerEnabled = false;
+
+      this.sys.insertDataOnLocalStorage({ lot });
+
+      this.ngZone.run(() => {
+        this.router.navigate(['/check-in/hours-choice']);
+      });
+    } catch (error) {
+      console.error('error', error);
+    }
   }
 }

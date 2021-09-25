@@ -8,4 +8,5 @@ export interface User {
   phoneNumber?: string;
   balance?: number;
   address: Address;
+  currentActiveCheckIn?: string;
 }

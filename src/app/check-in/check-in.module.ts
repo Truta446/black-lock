@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -11,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { CheckInRoutingModule } from './check-in-routing.module';
 import { QrcodeReaderComponent } from './qrcode-reader/qrcode-reader.component';
@@ -25,6 +27,7 @@ import { PaymentChoiceComponent } from './payment-choice/payment-choice.componen
   ],
   imports: [
     CommonModule,
+    FormsModule,
     CheckInRoutingModule,
     MatToolbarModule,
     MatIconModule,
@@ -35,6 +38,7 @@ import { PaymentChoiceComponent } from './payment-choice/payment-choice.componen
     MatSelectModule,
     MatCardModule,
     MatListModule,
+    MatRadioModule,
     ZXingScannerModule
   ]
 })

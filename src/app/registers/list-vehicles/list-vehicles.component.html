@@ -1,0 +1,32 @@
+<mat-toolbar color="transparent" class="icon-both h-10">
+  <button mat-icon-button aria-hidden="false" aria-label="Voltar" routerLink="/">
+    <mat-icon>arrow_back_ios_new</mat-icon>
+  </button>
+  <span class="ml-16">Veículos</span>
+</mat-toolbar>
+<div class="p-16">
+  <mat-list>
+    <ng-container *ngIf="vehicles.length > 0">
+      <mat-list-item class="timeline" *ngFor="let vehicle of vehicles" (click)="showVehicle(vehicle)">
+        <ng-container matListIcon [ngSwitch]="vehicle.type">
+          <mat-icon matListIcon *ngSwitchCase="'motorcycle'">two_wheeler</mat-icon>
+          <mat-icon matListIcon *ngSwitchCase="'car'">directions_car</mat-icon>
+          <mat-icon matListIcon *ngSwitchCase="'bycicle'">pedal_bike</mat-icon>
+          <mat-icon matListIcon *ngSwitchDefault>menu</mat-icon>
+        </ng-container>
+        <h4 matLine>
+          <small>{{ vehicle.plate }}</small>
+        </h4>
+        <p matLine wrap>{{ vehicle.description }} - {{ vehicle.year }}</p>
+      </mat-list-item>
+    </ng-container>
+
+    <ng-container *ngIf="vehicles.length === 0 && !loading">
+      <mat-list-item class="timeline">
+        <mat-icon matListIcon>store</mat-icon>
+        <h4 matLine>Nada por aqui ainda.</h4>
+      </mat-list-item>
+    </ng-container>
+  </mat-list>
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+</div>

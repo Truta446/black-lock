@@ -1,5 +1,5 @@
 <mat-toolbar color="transparent" class="icon-both">
-  <button mat-icon-button aria-hidden="false" aria-label="Voltar" routerLink="/">
+  <button mat-icon-button aria-hidden="false" aria-label="Voltar" routerLink="/registers">
     <mat-icon>arrow_back_ios_new</mat-icon>
   </button>
   <span class="spacer"></span>
@@ -46,11 +46,13 @@
         name="plate"
         type="text"
         placeholder="Digite a placa"
-        mask="AAA-9*99"
+        mask="SSS-0A00"
         [(ngModel)]="plate"
         #plateModel="ngModel"
         required
         maxlength="8"
+        (input)="plate = plate.toUpperCase()"
+        [specialCharacters]="['-']"
       >
       <mat-error *ngIf="plateModel.invalid">Obrigatório</mat-error>
     </mat-form-field>

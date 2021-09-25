@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgModel } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -16,6 +17,7 @@ export class MotorcycleComponent implements OnInit, OnDestroy {
   @ViewChild('plateModel') plateModel!: NgModel;
   @ViewChild('typeModel') typeModel!: NgModel;
   @ViewChild('yearModel') yearModel!: NgModel;
+  id?: string;
   description: string;
   plate: string;
   type: string;
@@ -23,8 +25,10 @@ export class MotorcycleComponent implements OnInit, OnDestroy {
   loading: boolean;
   onContentReady?: Subscription;
   subscription?: Subscription;
+  paramMapSubscription?: Subscription;
 
   constructor(
+    private readonly route: ActivatedRoute,
     private toastr: ToastrService,
     private vehicleService: VehicleService
   ) {
@@ -36,7 +40,13 @@ export class MotorcycleComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getMotorcycle();
+    this.paramMapSubscription = this.route.queryParamMap.subscribe((queryParams) => {
+      const id = queryParams.get('vehicleId') || '';
+
+      if (id) {
+        this.getMotorcycle(id);
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -44,9 +54,9 @@ export class MotorcycleComponent implements OnInit, OnDestroy {
     this.subscription?.unsubscribe();
   }
 
-  getMotorcycle(): void {
+  getMotorcycle(id: string): void {
     this.onContentReady = this.vehicleService.contentReady.subscribe(() => {
-      this.subscription = this.vehicleService.getVehicle('')?.subscribe((vehicle: Vehicle) => {
+      this.subscription = this.vehicleService.getVehicle(id)?.subscribe((vehicle: Vehicle) => {
         if (vehicle && Object.keys(vehicle).length > 0) {
           this.description = vehicle.description;
           this.plate = vehicle.plate;
@@ -77,7 +87,7 @@ export class MotorcycleComponent implements OnInit, OnDestroy {
   onValidateUser(): boolean {
     let count = 0;
 
-    if (!this.description) {
+    if (!this.description && this.description.length < 4) {
       this.descriptionModel.control.markAsTouched();
       count += 1;
     }
@@ -92,7 +102,7 @@ export class MotorcycleComponent implements OnInit, OnDestroy {
       count += 1;
     }
 
-    if (!this.year) {
+    if (this.year < 1950 || this.year > 2022) {
       this.yearModel.control.markAsTouched();
       count += 1;
     }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import firebase from 'firebase/app';
@@ -13,32 +13,40 @@ export class AuthService {
   confirmationResult: any;
 
   constructor(
+    private ngZone: NgZone,
     private afAuth: AngularFireAuth,
     private router: Router,
     private sys: SystemService
   ) { }
 
-  async signin(email: string, password: string): Promise<void> {
+  signin(email: string, password: string): void {
     this.sys.openLoading('Validando dados...');
 
-    await this.afAuth.signInWithEmailAndPassword(email, password)
+    this.afAuth.signInWithEmailAndPassword(email, password)
     .then(_ => {
-      this.router.navigate(['/dashboard']);
+      setTimeout(() => {
+        this.ngZone.run(() => {
+          this.router.navigate(['/dashboard']);
+        });
+      }, 1000);
     })
     .finally(() => {
       this.sys.closeLoading();
     });
   }
 
-  async signInWithGoogle(): Promise<UserCredential> {
+  signInWithGoogle(): void {
     this.sys.openLoading();
 
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('email');
 
-    return this.afAuth.signInWithPopup(provider).then(async (result) => {
-      this.router.navigate(['/dashboard']);
-      return result;
+    this.afAuth.signInWithPopup(provider).then(async (result) => {
+      setTimeout(() => {
+        this.ngZone.run(() => {
+          this.router.navigate(['/dashboard']);
+        });
+      }, 1000);
     })
     .finally(() => {
       this.sys.closeLoading();

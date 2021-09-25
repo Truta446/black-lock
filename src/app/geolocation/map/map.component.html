@@ -2,7 +2,10 @@
   <button mat-icon-button aria-hidden="false" aria-label="Voltar" routerLink="/geolocation/permission">
     <mat-icon>arrow_back_ios_new</mat-icon>
   </button>
+  <span class="spacer"></span>
   <span class="ml-16">Vagas Próximas</span>
+  <span class="spacer"></span>
+  <span class="spacer"></span>
 </mat-toolbar>
 
 <div class="map" leaflet [leafletOptions]="options" *ngIf="!loadingMap"></div>

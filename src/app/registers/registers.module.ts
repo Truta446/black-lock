@@ -16,13 +16,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { RegistersRoutingModule } from './registers-routing.module';
 import { MotorcycleComponent } from './motorcycle/motorcycle.component';
+import { ListVehiclesComponent } from './list-vehicles/list-vehicles.component';
 
 
 @NgModule({
-  declarations: [MotorcycleComponent],
+  declarations: [MotorcycleComponent, ListVehiclesComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -40,6 +42,7 @@ import { MotorcycleComponent } from './motorcycle/motorcycle.component';
     MatRadioModule,
     MatCheckboxModule,
     MatSelectModule,
+    MatProgressBarModule,
     NgxViacepModule,
     NgxMaskModule.forChild(),
   ]

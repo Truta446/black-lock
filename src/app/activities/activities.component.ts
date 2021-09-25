@@ -17,8 +17,10 @@ export class ActivitiesComponent implements OnInit, OnDestroy {
   constructor(private activitiesService: ActivitiesService) { }
 
   ngOnInit(): void {
-    this.onContentReady = this.activitiesService.contentReady.subscribe(async () => {
-      this.activities = await this.activitiesService.getActivities();
+    this.onContentReady = this.activitiesService.contentReady.subscribe(async (result: number) => {
+      if (!!result) { return; }
+
+      this.activities = await this.activitiesService.getActivities(true);
 
       this.loading = false;
     });
@@ -32,7 +34,7 @@ export class ActivitiesComponent implements OnInit, OnDestroy {
     try {
       this.loading = true;
 
-      const activities = await this.activitiesService.getActivities();
+      const activities = await this.activitiesService.getActivities(false);
 
       activities.forEach(activity => {
         this.activities.push(activity);

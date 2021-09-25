@@ -9,7 +9,7 @@ import { User } from './interfaces/user';
   providedIn: 'root'
 })
 export class UserService {
-  private contentReadySource = new BehaviorSubject(0);
+  private contentReadySource = new BehaviorSubject(1);
   contentReady = this.contentReadySource.asObservable();
   userId?: string;
   private usersCollection?: AngularFirestoreCollection<any>;
@@ -37,7 +37,7 @@ export class UserService {
     });
   }
 
-  updateUser(user: User): void {
+  updateUser(user: any): void {
     this.usersCollection?.doc(this.userId).set(user, { merge: true });
   }
 }

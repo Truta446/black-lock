@@ -3,8 +3,8 @@ import { tileLayer, latLng, marker, icon } from 'leaflet';
 import { Subscription } from 'rxjs';
 
 import { SystemService } from '../../system.service';
-import { GeolocationService } from '../geolocation.service';
-import { AccessPoint } from '../../interfaces/access-point';
+import { LotService } from '../../services/lot.service';
+import { Lot } from '../../interfaces/lot';
 
 @Component({
   selector: 'app-map',
@@ -15,13 +15,13 @@ export class MapComponent implements OnInit, OnDestroy {
   loadingMap: boolean;
   lat: number;
   lng: number;
-  accessPoints: AccessPoint[];
+  accessPoints: Lot[];
   options: any;
   onContentSubscriptionReady?: Subscription;
 
   constructor(
     private sys: SystemService,
-    private geolocationService: GeolocationService
+    private lotService: LotService
   ) {
     this.loadingMap = true;
     this.lat = 0;
@@ -31,7 +31,7 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.onContentSubscriptionReady = this.geolocationService.getAccessPoints()?.subscribe(accessPoints => {
+    this.onContentSubscriptionReady = this.lotService.getLots()?.subscribe(accessPoints => {
       this.accessPoints = accessPoints;
 
       this.options = {

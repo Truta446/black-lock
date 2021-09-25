@@ -11,8 +11,7 @@ import { Activity } from '../interfaces/activity';
   providedIn: 'root'
 })
 export class ActivitiesService {
-
-  private contentReadySource = new BehaviorSubject(0);
+  private contentReadySource = new BehaviorSubject(1);
   contentReady = this.contentReadySource.asObservable();
   userId?: string;
   activities: Array<{}> = [];
@@ -20,14 +19,18 @@ export class ActivitiesService {
 
   constructor(private readonly fireStore: AngularFirestore, fbAuth: AngularFireAuth) {
     fbAuth.idTokenResult.subscribe(result => {
-      if (result){
+      if (result) {
         this.userId = result.claims.user_id;
         this.contentReadySource.next(0);
       }
     });
   }
 
-  getActivities(): Promise<Activity[]> {
+  getActivities(isFirst: boolean): Promise<Activity[]> {
+    if (isFirst) {
+      this.lastDocument = {};
+    }
+
     return this.fireStore
       .collection(
         `users/${this.userId}/activities`,
@@ -35,9 +38,9 @@ export class ActivitiesService {
           if (this.lastDocument) {
             return ref.orderBy('startHour', 'desc')
               .startAfter(this.lastDocument)
-              .limit(7);
+              .limit(10);
           } else {
-            return ref.orderBy('startHour', 'desc').limit(7);
+            return ref.orderBy('startHour', 'desc').limit(10);
           }
         }
       )

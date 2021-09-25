@@ -10,7 +10,7 @@ import { Vehicle } from './../interfaces/vehicle';
   providedIn: 'root'
 })
 export class VehicleService {
-  private contentReadySource = new BehaviorSubject(0);
+  private contentReadySource = new BehaviorSubject(1);
   contentReady = this.contentReadySource.asObservable();
   private vehiclesCollection?: AngularFirestoreCollection<any>;
 
@@ -28,11 +28,11 @@ export class VehicleService {
   }
 
   getAllVehicles(): Observable<Vehicle[]> | undefined {
-    return this.vehiclesCollection?.valueChanges();
+    return this.vehiclesCollection?.valueChanges({idField: 'id'});
   }
 
   getVehicle(vehicleId: string): Observable<Vehicle> | undefined {
-    return this.vehiclesCollection?.doc(vehicleId).valueChanges();
+    return this.vehiclesCollection?.doc(vehicleId).valueChanges({idField: 'id'});
   }
 
   createVehicle(vehicle: Vehicle): void {
