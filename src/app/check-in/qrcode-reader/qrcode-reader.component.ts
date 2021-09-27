@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
 
-import { SystemService } from '../../system.service';
+import { SystemService } from 'src/app/services/system.service';
 import { LotService } from '../../services/lot.service';
 
 @Component({
@@ -43,7 +43,7 @@ export class QrcodeReaderComponent implements OnInit {
       this.sys.insertDataOnLocalStorage({ lot });
 
       this.ngZone.run(() => {
-        this.router.navigate(['/check-in/hours-choice']);
+        this.router.navigate(['/check-in/vehicle-choice']);
       });
     } catch (error) {
       console.error('error', error);

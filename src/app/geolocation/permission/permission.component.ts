@@ -1,7 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { SystemService } from '../../system.service';
+import { SystemService } from 'src/app/services/system.service';
 
 @Component({
   selector: 'app-permission',

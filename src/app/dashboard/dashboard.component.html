@@ -25,11 +25,50 @@
 
 <span class="spacer"></span>
 
+<div>
+  <div class="timer" *ngIf="user.currentActiveCheckIn; else checkin">
+    <div>
+      <mat-icon>timer</mat-icon>
+    </div>
+
+    <div>
+      <span>
+        {{ timer$ | async | countdown: timeLeft }}
+      </span>
+    </div>
+
+    <div>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="checkout()"
+      >
+        LIBERAR
+      </button>
+    </div>
+  </div>
+  <ng-template #checkin>
+    <div class="timer">
+      <div>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="initCheckIn()"
+        >
+          ESTACIONAR
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<span class="spacer"></span>
+
 <div class="mat-list-base">
   <h3 class="mat-subheader">O que você gostaria de fazer?</h3>
   <div class="horizontal-scroll">
-    <mat-card matRipple routerLink="/check-in" class="action">
-      <div class="title"><strong>Check-in</strong></div><br>
+    <mat-card matRipple (click)="initCheckIn()" class="action">
+      <div class="title"><strong>Estacionar</strong></div><br>
       <small>Faça o check-in do seu veículo.</small>
     </mat-card>
 

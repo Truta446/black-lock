@@ -15,9 +15,9 @@
           <mat-icon matListIcon *ngSwitchDefault>menu</mat-icon>
         </ng-container>
         <h4 matLine>
-          <small>{{ vehicle.plate }}</small>
+          <small>{{ vehicle.description }}</small>
         </h4>
-        <p matLine wrap>{{ vehicle.description }} - {{ vehicle.year }}</p>
+        <p matLine wrap>{{ vehicle.plate | mask: 'SSS-0A00' }} - {{ vehicle.year }}</p>
       </mat-list-item>
     </ng-container>
 
@@ -29,4 +29,10 @@
     </ng-container>
   </mat-list>
   <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+</div>
+
+<div class="footer">
+  <button mat-fab color="primary" routerLink="/registers/motorcycle">
+    <mat-icon>add</mat-icon>
+  </button>
 </div>

@@ -1,5 +1,5 @@
 <mat-toolbar color="transparent" class="icon-both">
-  <button mat-icon-button aria-hidden="false" aria-label="Voltar" routerLink="/check-in">
+  <button mat-icon-button aria-hidden="false" aria-label="Voltar" routerLink="/check-in/vehicle-choice">
     <mat-icon>arrow_back_ios_new</mat-icon>
   </button>
   <span class="spacer"></span>
@@ -11,7 +11,7 @@
 <div class="p-16 main">
   <form class="form-hours">
     <mat-radio-group color="primary" name="option" [(ngModel)]="option">
-      <mat-radio-button *ngFor="let price of prices" [value]="price">
+      <mat-radio-button *ngFor="let price of prices" [value]="price.value" [disabled]="price.disabled">
         {{ price.time }} - {{ (price.amount / 100) | currency: 'R$' }}
       </mat-radio-button>
     </mat-radio-group>

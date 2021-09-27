@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,17 +14,20 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { CheckInRoutingModule } from './check-in-routing.module';
 import { QrcodeReaderComponent } from './qrcode-reader/qrcode-reader.component';
 import { HoursChoiceComponent } from './hours-choice/hours-choice.component';
 import { PaymentChoiceComponent } from './payment-choice/payment-choice.component';
+import { VehicleChoiceComponent } from './vehicle-choice/vehicle-choice.component';
 
 @NgModule({
   declarations: [
     QrcodeReaderComponent,
     HoursChoiceComponent,
-    PaymentChoiceComponent
+    PaymentChoiceComponent,
+    VehicleChoiceComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +43,9 @@ import { PaymentChoiceComponent } from './payment-choice/payment-choice.componen
     MatCardModule,
     MatListModule,
     MatRadioModule,
-    ZXingScannerModule
+    MatProgressBarModule,
+    ZXingScannerModule,
+    NgxMaskModule.forChild()
   ]
 })
 export class CheckInModule { }

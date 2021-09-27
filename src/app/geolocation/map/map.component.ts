@@ -2,9 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { tileLayer, latLng, marker, icon } from 'leaflet';
 import { Subscription } from 'rxjs';
 
-import { SystemService } from '../../system.service';
+import { SystemService } from 'src/app/services/system.service';
 import { LotService } from '../../services/lot.service';
-import { Lot } from '../../interfaces/lot';
+import { Lot } from 'src/app/interfaces/lot';
 
 @Component({
   selector: 'app-map',

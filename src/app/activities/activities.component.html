@@ -10,7 +10,8 @@
       <mat-list-item class="timeline" *ngFor="let activity of activities">
         <div class="time"></div>
         <ng-container matListIcon [ngSwitch]="activity.type">
-          <mat-icon matListIcon *ngSwitchCase="'CHECKIN'">done_all</mat-icon>
+          <mat-icon matListIcon *ngSwitchCase="'CHECKIN'">done</mat-icon>
+          <mat-icon matListIcon *ngSwitchCase="'CHECKOUT'">done_all</mat-icon>
           <mat-icon matListIcon *ngSwitchCase="'ADD'">attach_money</mat-icon>
           <mat-icon matListIcon *ngSwitchDefault>menu</mat-icon>
         </ng-container>

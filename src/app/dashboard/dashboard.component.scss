@@ -1,5 +1,3 @@
-@import '../../theme';
-
 :host {
   display: flex;
   flex-direction: column;
@@ -18,7 +16,7 @@
   position: absolute;
   right: 16px;
   bottom: -20px;
-  color:  mat-color($md-black-lock, 500);
+  color:  #000000;
 }
 
 .horizontal-scroll {
@@ -56,5 +54,22 @@ mat-card.action {
   .title {
     font-size: 18px;
     line-height: 1.2;
+  }
+}
+
+.timer {
+  display: contents;
+  text-align: center;
+
+  button {
+    width: 50%;
+  }
+
+  span {
+    font-size: xxx-large;
+  }
+
+  > * {
+    margin-bottom: 30px;
   }
 }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { LoadingComponent } from './loading/loading.component';
-import { LocalStorage } from './interfaces/local-storage'
+import { LoadingComponent } from '../loading/loading.component';
+import { LocalStorage } from '../interfaces/local-storage';
 
 @Injectable({
   providedIn: 'root'

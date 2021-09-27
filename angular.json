@@ -48,7 +48,8 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "numeral",
-              "uuid"
+              "uuid",
+              "lodash"
             ],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
@@ -71,13 +72,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "2mb"
+                  "maximumWarning": "5mb",
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "100kb"
+                  "maximumWarning": "200kb",
+                  "maximumError": "400kb"
                 }
               ]
             }

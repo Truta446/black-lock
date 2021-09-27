@@ -4,8 +4,8 @@ import { NgxViacepService } from '@brunoc/ngx-viacep';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 
-import { UserService } from 'src/app/user.service';
-import { User } from '../../interfaces/user';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-profile',

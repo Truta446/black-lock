@@ -1,0 +1,37 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  height: 100%;
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
+}
+
+.form-hours {
+  .mat-radio-group {
+    display: grid;
+    place-content: center;
+
+    .mat-radio-button {
+      margin: 30px 0;
+    }
+  }
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: #000000;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+  background: #E4E8EB;
+}
+
+::ng-deep .mat-progress-bar {
+  border-radius: 2px;
+}

@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { User } from './interfaces/user';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'

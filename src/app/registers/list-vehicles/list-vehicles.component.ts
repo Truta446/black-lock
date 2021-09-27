@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { VehicleService } from '../vehicle.service';
-import { Vehicle } from '../../interfaces/vehicle';
+import { VehicleService } from 'src/app/services/vehicle.service';
+import { Vehicle } from 'src/app/interfaces/vehicle';
 
 @Component({
   selector: 'app-list-vehicles',

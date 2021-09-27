@@ -59,6 +59,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ActivitiesComponent } from './activities/activities.component';
+import { CountdownPipe } from './pipes/countdown.pipe';
 
 numeral.register('locale', 'pt', {
   delimiters: {
@@ -87,7 +88,8 @@ numeral.locale('pt');
     DashboardComponent,
     PageNotFoundComponent,
     LoadingComponent,
-    ActivitiesComponent
+    ActivitiesComponent,
+    CountdownPipe
   ],
   imports: [
     BrowserModule,

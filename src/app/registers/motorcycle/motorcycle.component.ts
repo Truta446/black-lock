@@ -1,11 +1,12 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy, ViewChild, NgZone } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgModel } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
+import * as _ from 'lodash';
 
-import { VehicleService } from '../vehicle.service';
-import { Vehicle } from '../../interfaces/vehicle';
+import { VehicleService } from 'src/app/services/vehicle.service';
+import { Vehicle } from 'src/app/interfaces/vehicle';
 
 @Component({
   selector: 'app-motorcycle',
@@ -21,6 +22,7 @@ export class MotorcycleComponent implements OnInit, OnDestroy {
   description: string;
   plate: string;
   type: string;
+  buttonName: string;
   year: number;
   loading: boolean;
   onContentReady?: Subscription;
@@ -28,13 +30,16 @@ export class MotorcycleComponent implements OnInit, OnDestroy {
   paramMapSubscription?: Subscription;
 
   constructor(
+    private ngZone: NgZone,
     private readonly route: ActivatedRoute,
+    private readonly router: Router,
     private toastr: ToastrService,
     private vehicleService: VehicleService
   ) {
     this.description = '';
     this.plate = '';
     this.type = '';
+    this.buttonName = '';
     this.year = 0;
     this.loading = false;
   }
@@ -45,11 +50,16 @@ export class MotorcycleComponent implements OnInit, OnDestroy {
 
       if (id) {
         this.getMotorcycle(id);
+
+        this.buttonName = 'Editar';
+      } else {
+        this.buttonName = 'Criar';
       }
     });
   }
 
   ngOnDestroy(): void {
+    this.paramMapSubscription?.unsubscribe();
     this.onContentReady?.unsubscribe();
     this.subscription?.unsubscribe();
   }
@@ -57,7 +67,8 @@ export class MotorcycleComponent implements OnInit, OnDestroy {
   getMotorcycle(id: string): void {
     this.onContentReady = this.vehicleService.contentReady.subscribe(() => {
       this.subscription = this.vehicleService.getVehicle(id)?.subscribe((vehicle: Vehicle) => {
-        if (vehicle && Object.keys(vehicle).length > 0) {
+        if (!_.isEmpty(vehicle)) {
+          this.id = vehicle.id;
           this.description = vehicle.description;
           this.plate = vehicle.plate;
           this.type = vehicle.type;
@@ -67,11 +78,24 @@ export class MotorcycleComponent implements OnInit, OnDestroy {
     });
   }
 
-  saveMotorcycle(): void {
+  onChooseFunction(): void {
     if (!this.onValidateUser()) {
+      this.toastr.error('Confira os dados inseridos e tente novamente.');
       return;
     }
 
+    if (this.id) {
+      this.saveMotorcycle();
+    } else {
+      this.createMotorcycle();
+    }
+
+    this.ngZone.run(() => {
+      this.router.navigate(['/registers']);
+    });
+  }
+
+  createMotorcycle(): void {
     const motorcycle = {
       description: this.description,
       plate: this.plate,
@@ -80,6 +104,20 @@ export class MotorcycleComponent implements OnInit, OnDestroy {
     };
 
     this.vehicleService.createVehicle(motorcycle);
+
+    this.toastr.success('Dados inseridos com sucesso.');
+  }
+
+  saveMotorcycle(): void {
+    const motorcycle = {
+      id: this.id,
+      description: this.description,
+      plate: this.plate,
+      type: this.type,
+      year: this.year
+    };
+
+    this.vehicleService.updateVehicle(motorcycle);
 
     this.toastr.success('Dados atualizados com sucesso.');
   }
@@ -104,6 +142,7 @@ export class MotorcycleComponent implements OnInit, OnDestroy {
 
     if (this.year < 1950 || this.year > 2022) {
       this.yearModel.control.markAsTouched();
+      this.yearModel.control.setErrors({ format: true });
       count += 1;
     }
 

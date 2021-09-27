@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 
-import { UserService } from '../../user.service';
-import { ActivitiesService } from '../../activities/activities.service';
-import { User } from '../../interfaces/user';
-import { Activity } from '../../interfaces/activity';
+import { UserService } from 'src/app/services/user.service';
+import { ActivitiesService } from '../../services/activities.service';
+import { User } from 'src/app/interfaces/user';
+import { Activity } from 'src/app/interfaces/activity';
 
 @Component({
   selector: 'app-method',
@@ -71,7 +71,7 @@ export class MethodComponent implements OnInit, OnDestroy {
         this.router.navigate(['/dashboard']);
       });
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }
 }

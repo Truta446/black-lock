@@ -1,0 +1,36 @@
+<mat-toolbar color="transparent" class="icon-both">
+  <button mat-icon-button aria-hidden="false" aria-label="Voltar" routerLink="/check-in">
+    <mat-icon>arrow_back_ios_new</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <span class="ml-16">Veículo</span>
+  <span class="spacer"></span>
+  <span class="spacer"></span>
+</mat-toolbar>
+
+<div class="p-16 main" *ngIf="vehicles.length > 0; else noData">
+  <form class="form-hours" *ngIf="!loading">
+    <mat-radio-group color="primary" name="vehicleId" [(ngModel)]="vehicleId">
+      <mat-radio-button *ngFor="let vehicle of vehicles" [value]="vehicle.id">
+        {{ vehicle.description }} - {{ vehicle.plate | mask: 'SSS-0A00' }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </form>
+
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+
+  <button
+    class="w-100"
+    mat-raised-button
+    color="primary"
+    (click)="onChooseOption()"
+  >
+    PRÓXIMO
+  </button>
+</div>
+
+<ng-template #noData>
+  <div class="p-16 main">
+    asd
+  </div>
+</ng-template>

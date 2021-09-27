@@ -1,8 +1,9 @@
 export interface CheckIn {
   id?: string;
   amount: number;
-  time: string;
+  endHour: string;
   vehicleId: string;
+  lotId: string;
   method: string;
   insertedAt: string;
 }

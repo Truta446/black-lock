@@ -4,9 +4,9 @@ import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 
-import { SystemService } from '../../system.service';
-import { UserService } from '../../user.service';
-import { ActivitiesService } from '../../activities/activities.service';
+import { SystemService } from 'src/app/services/system.service';
+import { UserService } from 'src/app/services/user.service';
+import { ActivitiesService } from '../../services/activities.service';
 import { CheckInService } from '../../services/check-in.service';
 import { Activity } from 'src/app/interfaces/activity';
 import { CheckIn } from 'src/app/interfaces/check-in';
@@ -62,11 +62,12 @@ export class PaymentChoiceComponent implements OnInit {
 
       const checkIn: CheckIn = {
         amount: data.checkIn.hourOption.amount,
-        time: data.checkIn.hourOption.time,
+        endHour,
         vehicleId: data.checkIn.vehicleId,
+        lotId: data.lot.id,
         method: this.option,
         insertedAt: moment().format(),
-      }
+      };
 
       const id = await this.checkInService.createCheckIn(checkIn);
 

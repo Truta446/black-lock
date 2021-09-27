@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { QrcodeReaderComponent } from './qrcode-reader/qrcode-reader.component';
+import { VehicleChoiceComponent } from './vehicle-choice/vehicle-choice.component';
 import { HoursChoiceComponent } from './hours-choice/hours-choice.component';
 import { PaymentChoiceComponent } from './payment-choice/payment-choice.component';
-import { QrcodeReaderComponent } from './qrcode-reader/qrcode-reader.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'qrcode-reader',
     component: QrcodeReaderComponent
+  },
+  {
+    path: 'vehicle-choice',
+    component: VehicleChoiceComponent
   },
   {
     path: 'hours-choice',

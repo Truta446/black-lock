@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { ActivitiesService } from './activities.service';
+import { ActivitiesService } from '../services/activities.service';
 import { Activity } from '../interfaces/activity';
 
 @Component({
@@ -40,7 +40,7 @@ export class ActivitiesComponent implements OnInit, OnDestroy {
         this.activities.push(activity);
       });
     } catch (err) {
-      console.log(err);
+      console.error(err);
     } finally {
       this.loading = false;
     }
