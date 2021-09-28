@@ -14,7 +14,7 @@ exports.config = {
       args: [ "--headless", "--disable-gpu" ]
     },
   },
-  chromeDriver: '../node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_91.0.4472.77',
+  chromeDriver: '../node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_94.0.4606.41',
   directConnect: true,
   SELENIUM_PROMISE_MANAGER: false,
   baseUrl: 'http://localhost:4200/',

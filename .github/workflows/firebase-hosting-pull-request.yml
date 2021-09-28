@@ -37,7 +37,7 @@ jobs:
 
       - name: Update chromdrive
         working-directory: .
-        run: node node_modules/.bin/webdriver-manager update --versions.chrome=91.0.4472.77
+        run: node node_modules/.bin/webdriver-manager update --versions.chrome=94.0.4606.41
 
       - name: Run e2e tests
         working-directory: .
